@@ -9,6 +9,7 @@
 	}
 </script>
 <head>
+<jsp:include page="CalendarServlet" flush="true"/>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <link rel="stylesheet" type="text/css" href="style.css">
 <title>Online calendar</title>
