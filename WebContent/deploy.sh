@@ -15,4 +15,8 @@ chmod 777 -R bin
 cd bin
 sh startup.sh
 
+<<<<<<< HEAD
 firefox localhost:8080/CalendarOnline/
+=======
+firefox localhost:8080/Site/
+>>>>>>> ca82db536b49e7a4568fdb993059e9d49af4ea1d
