@@ -2,10 +2,33 @@
 <web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://java.sun.com/xml/ns/javaee" xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_3_0.xsd" id="WebApp_ID" version="3.0">
   <display-name>CalendarOnline</display-name>
   <welcome-file-list>
-<<<<<<< HEAD
     <welcome-file>Login.jsp</welcome-file>
-=======
-    <welcome-file>DailySchedule.jsp</welcome-file>
->>>>>>> ca82db536b49e7a4568fdb993059e9d49af4ea1d
   </welcome-file-list>
+  <servlet>
+    <servlet-name>CalendarServlet</servlet-name>
+    <servlet-class>backend.CalendarServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>CalendarServlet</servlet-name>
+    <url-pattern>/CalendarRegister</url-pattern>
+  </servlet-mapping>
+  
+  <servlet>
+    <servlet-name>CalendarLoginServlet</servlet-name>
+    <servlet-class>backend.CalendarLoginServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>CalendarLoginServlet</servlet-name>
+    <url-pattern>/CalendarLogin</url-pattern>
+  </servlet-mapping>
+ 
+  <servlet>
+	<servlet-name>CalendarDailyServlet</servlet-name>
+    <servlet-class>backend.CalendarDailyServlet</servlet-class>  	
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>CalendarDailyServlet</servlet-name>
+    <url-pattern>/CalendarDaily</url-pattern>
+  </servlet-mapping>  
+  
 </web-app>

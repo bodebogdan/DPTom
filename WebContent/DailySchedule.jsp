@@ -1,3 +1,4 @@
+<%@page import="backend.CalendarDailyServlet"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
@@ -7,91 +8,53 @@
 <title>Daily schedule</title>
 </head>
 <body>
-	<table border="1" width="80%" cellpadding="5">
-		<thead>
-			<tr>
-				<th colspan="2">Schedule for : "aici intra data completa"</th>
-			</tr>
-		</thead>
-		<tbody>
-			<tr>
-				<td width="30%"><input type="text" maxlength="15" name="task1" value=""/></td>
-				<td width="70%" style="white-space: nowrap;"><input style="width:90%"type="text" maxlength="35" name="description1" 
-					value="" /></td>
-			</tr>
-			<!-- 
-			<tr>
-				<td><input type="text" maxlength="15" name="task2" value="" /></td>
-				<td><input type="text" maxlength="40" name="description2"
-					value="" /></td>
-			</tr>
-			<tr>
-				<td><input type="text" maxlength="15" name="task3" value="" /></td>
-				<td><input type="text" maxlength="40" name="description3"
-					value="" /></td>
-			</tr>
-			<tr>
-				<td><input type="text" maxlength="15" name="task4" value="" /></td>
-				<td><input type="text" maxlength="40" name="description4"
-					value="" /></td>
-			</tr>
-			<tr>
-				<td><input type="text" maxlength="15" name="task5" value="" /></td>
-				<td><input type="text" maxlength="40" name="description5"
-					value="" /></td>
-			</tr>
-			<tr>
-				<td><input type="text" maxlength="15" name="task6" value="" /></td>
-				<td><input type="text" maxlength="40" name="description6"
-					value="" /></td>
-			</tr>
-			<tr>
-				<td><input type="text" maxlength="15" name="task7" value="" /></td>
-				<td><input type="text" maxlength="40" name="description7"
-					value="" /></td>
-			</tr>
-			<tr>
-				<td><input type="text" maxlength="15" name="task8" value="" /></td>
-				<td><input type="text" maxlength="40" name="description8"
-					value="" /></td>
-			</tr>
-			<tr>
-				<td><input type="text" maxlength="15" name="task9" value="" /></td>
-				<td><input type="text" maxlength="40" name="description9"
-					value="" /></td>
-			</tr>
-			<tr>
-				<td><input type="text" maxlength="15" name="task10" value="" /></td>
-				<td><input type="text" maxlength="40" name="description10"
-					value="" /></td>
-			</tr>
-			<tr>
-				<td><input type="text" maxlength="15" name="task11" value="" /></td>
-				<td><input type="text" maxlength="40" name="description11"
-					value="" /></td>
-			</tr>
-			<tr>
-				<td><input type="text" maxlength="15" name="task12" value="" /></td>
-				<td><input type="text" maxlength="40" name="description12"
-					value="" /></td>
-			</tr>
-			<tr>
-				<td><input type="text" maxlength="15" name="task13" value="" /></td>
-				<td><input type="text" maxlength="40" name="description13"
-					value="" /></td>
-			</tr>
-			<tr>
-				<td><input type="text" maxlength="15" name="task14" value="" /></td>
-				<td><input type="text" maxlength="40" name="description14"
-					value="" /></td>
-			</tr>
-			<tr>
-				<td><input type="text" maxlength="15" name="task15" value="" /></td>
-				<td><input type="text" maxlength="40" name="description15"
-					value="" /></td>
-			</tr>
-			-->
-		</tbody>
-	</table>
+	<form method="post" action="./CalendarDaily">
+		<table border="1" width="80%" cellpadding="5">
+			<thead>
+				<tr>
+					<th colspan="2">
+						<%
+							session.setAttribute("day", request.getParameter("day"));
+							out.println("Schedule for: " + session.getAttribute("month") + " " + request.getParameter("day"));
+				        	String user = request.getSession().getAttribute("user").toString();
+							String month = request.getSession().getAttribute("month").toString();
+							int day = Integer.valueOf(request.getSession().getAttribute("day").toString());
+							Object[] dateParams = new Object[]{ 2016, CalendarDailyServlet.ReturnMonth(month), day};
+							backend.DailyDAL d = new backend.DailyDAL(null, null, user, dateParams);
+				
+							java.util.ArrayList<String> titleList = d.GetTitles();
+							java.util.ArrayList<String> contentList = d.GetDescriptions();
+							int len = titleList.size();
+							int i;
+						%>
+					</th>
+				</tr>
+				<tr>
+					<td><input type="submit" value="Save" /></td>
+				</tr>
+			</thead>
+			<tbody>
+			
+	        <% 	for(i = 1; i <= len; i++) { %>
+				<tr>
+					<td width="30%"><input type="text" maxlength="15" name="task<% out.print(i); %>"
+						value="<% out.print(titleList.get(i-1)); %>" /></td>
+					<td width="70%" style="white-space: nowrap;"><input
+						style="width: 90%" type="text" maxlength="35" name="description<% out.print(i); %>"
+						value="<% out.print(contentList.get(i-1)); %>" /></td>
+				</tr>		            
+	        <% } %>
+	        <% 	for(int k = i; k < 15; k++) { %>
+				<tr>
+					<td width="30%"><input type="text" maxlength="15" name="task<% out.print(k); %>"
+						value="" /></td>
+					<td width="70%" style="white-space: nowrap;"><input
+						style="width: 90%" type="text" maxlength="35" name="description<% out.print(k); %>"
+						value="" /></td>
+				</tr>	
+	        <% } %>
+			</tbody>
+		</table>
+	</form>
 </body>
 </html>

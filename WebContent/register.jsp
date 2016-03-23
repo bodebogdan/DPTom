@@ -7,7 +7,8 @@
         <title>Registration</title>
     </head>
     <body>
-        <form method="post" action="registration.jsp">
+    <!-- action="registration.jsp" -->
+        <form method="post" action="./CalendarRegister" >
             <center>
             <table border="1" width="30%" cellpadding="5">
                 <thead>
@@ -18,30 +19,27 @@
                 <tbody>
                     <tr>
                         <td>First Name</td>
-                        <td><input type="text" name="fname" value="" /></td>
+                        <td><input type="text" name="fname" value="" maxlength="25" /></td>
                     </tr>
                     <tr>
                         <td>Last Name</td>
-                        <td><input type="text" name="lname" value="" /></td>
+                        <td><input type="text" name="lname" value="" maxlength="25" /></td>
                     </tr>
                     <tr>
                         <td>Email</td>
-                        <td><input type="text" name="email" value="" /></td>
+                        <td><input type="text" name="email" value="" maxlength="30" /></td>
                     </tr>
                     <tr>
                         <td>User Name</td>
-                        <td><input type="text" name="uname" value="" /></td>
+                        <td><input type="text" name="uname" value="" maxlength="15"/></td>
                     </tr>
                     <tr>
                         <td>Password</td>
-                        <td><input type="password" name="pass" value="" /></td>
+                        <td><input type="password" name="pass" maxlength="20" value="" /></td>
                     </tr>
                     <tr>
                         <td><input type="submit" value="Submit" /></td>
                         <td><input type="reset" value="Reset" /></td>
-                    </tr>
-                    <tr>
-                        <td colspan="2">Already registered!! <a href="index.jsp">Login Here</a></td>
                     </tr>
                 </tbody>
             </table>

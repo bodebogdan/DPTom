@@ -4,10 +4,10 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>JSP Example</title>
+        <title>Welcome</title>
     </head>
     <body>
-        <form method="post" action="login.jsp">
+        <form method="post" action="./CalendarLogin">
             <center>
             <table border="1" width="30%" cellpadding="3">
                 <thead>
@@ -27,9 +27,6 @@
                     <tr>
                         <td><input type="submit" value="Login" /></td>
                         <td><input type="reset" value="Reset" /></td>
-                    </tr>
-                    <tr>
-                        <td colspan="2">Not Registered! <a href="register.jsp">Register Here</a></td>
                     </tr>
                 </tbody>
             </table>

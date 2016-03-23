@@ -1,29 +1,32 @@
-#!/bin/sh
-echo $HOME
-cd $HOME
+#!/bin/bash
 
-cd /home/$USER/workspace/CalendarOnline/WebContent
-ls
+DIR=$(dirname $0)
+MYSQL_ROOT_PASSWORD="root123"
+PROJECT_HOME="/home/$USER/workspace/CalendarOnline"
+TOMCAT_HOME="/home/$USER/Documents/TOMCAT"
 
-rm -rf Site.war
+sudo apt-get install ant -y
+pushd $PROJECT_HOME
+ant clean && ant build
+rm -rf $PROJECT_HOME/WebContent/WEB-INF/classes/*
+cp -rf $PROJECT_HOME/build/classes/* $PROJECT_HOME/WebContent/WEB-INF/classes/
+popd
+
+pushd $PROJECT_HOME/WebContent
 rm -rf CalendarOnline.war
-
 jar -cvf CalendarOnline.war *
+mv CalendarOnline.war $TOMCAT_HOME/webapps
+popd
 
-cp CalendarOnline.war /home/$USER/Documents/TOMCAT/webapps
+ctrl_c() {
+    $TOMCAT_HOME/bin/shutdown.sh
+}
 
-cd $HOME 
-<<<<<<< HEAD
-cd /home/$USER/Documents/TOMCAT
-=======
-cd /home/adrian/Documents/TOMCAT
->>>>>>> ca82db536b49e7a4568fdb993059e9d49af4ea1d
-chmod 777 -R bin
-cd bin
-sh startup.sh
+chmod +x -R $TOMCAT_HOME/bin
+trap ctrl_c INT
+$TOMCAT_HOME/bin/startup.sh
 
-<<<<<<< HEAD
-firefox localhost:8080/CalendarOnline/Login.jsp
-=======
-firefox localhost:8080/CalendarOnline/
->>>>>>> ca82db536b49e7a4568fdb993059e9d49af4ea1d
+mysql -u root -p"$MYSQL_ROOT_PASSWORD" < $DIR/project.sql
+
+firefox http://localhost:8080/CalendarOnline/
+

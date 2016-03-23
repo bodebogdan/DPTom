@@ -2,20 +2,13 @@
 	pageEncoding="UTF-8"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
-<script>
-	function storeValue(str)
-	{
-		localStorage.setItem("Month", str);
-	}
-</script>
 <head>
-<jsp:include page="CalendarServlet" flush="true"/>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<link rel="stylesheet" type="text/css" href="style.css">
+<!--  <link rel="stylesheet" type="text/css" href="style.css"> -->
 <title>Online calendar</title>
 </head>
 <body>
-	<h1>2016 Calendar</h1>
+	<h1><% out.println("2016 Calendar for: " + session.getAttribute("user"));%></h1>
 	<div>
 		<table>
 			<tr>
@@ -23,11 +16,8 @@
 					<table id="insideTable">
 						<tr>
 							<td align="center">
-							 	<a href="/CalendarOnline/Month.jsp" onclick="storeValue('January')">January</a>
+							 	<a href="/CalendarOnline/Month.jsp?month=January">January</a>
 							</td>
-						</tr>
-						<tr>
-							<td>Mo Tu We Th Fr Sa Su</td>
 						</tr>
 					</table>
 				</td>
@@ -35,11 +25,8 @@
 					<table id="insideTable">
 						<tr>
 							<td align="center">
-								<a href="/CalendarOnline/Month.jsp" onclick="storeValue('February')">February</a> 
+								<a href="/CalendarOnline/Month.jsp?month=February" onclick="<%session.setAttribute("month", "February");%>">February</a> 
 							</td>
-						</tr>
-						<tr>
-							<td>Mo Tu We Th Fr Sa Su</td>
 						</tr>
 					</table>
 				</td>
@@ -47,11 +34,8 @@
 					<table id="insideTable">
 						<tr>
 							<td align="center">
-								<a href="/CalendarOnline/Month.jsp" onclick="storeValue('March')">March</a>
+								<a href="/CalendarOnline/Month.jsp?month=March">March</a>
 							</td>
-						</tr>
-						<tr>
-							<td>Mo Tu We Th Fr Sa Su</td>
 						</tr>
 					</table>
 				</td>
@@ -61,11 +45,8 @@
 					<table id="insideTable">
 						<tr>
 							<td align="center">
-								<a href="/CalendarOnline/Month.jsp" onclick="storeValue('April')">April</a>
+								<a href="/CalendarOnline/Month.jsp?month=April">April</a>
 							</td>
-						</tr>
-						<tr>
-							<td>Mo Tu We Th Fr Sa Su</td>
 						</tr>
 					</table>
 				</td>
@@ -73,11 +54,8 @@
 					<table id="insideTable">
 						<tr>
 							<td align="center">
-								<a href="/CalendarOnline/Month.jsp" onclick="storeValue('May')">May</a>
+								<a href="/CalendarOnline/Month.jsp?month=May">May</a>
 							</td>
-						</tr>
-						<tr>
-							<td>Mo Tu We Th Fr Sa Su</td>
 						</tr>
 					</table>
 				</td>
@@ -85,11 +63,8 @@
 					<table id="insideTable">
 						<tr>
 							<td align="center">
-								<a href="/CalendarOnline/Month.jsp" onclick="storeValue('June')">June</a>
+								<a href="/CalendarOnline/Month.jsp?month=June">June</a>
 							</td>
-						</tr>
-						<tr>
-							<td>Mo Tu We Th Fr Sa Su</td>
 						</tr>
 					</table>
 				</td>
@@ -99,11 +74,8 @@
 					<table id="insideTable">
 						<tr>
 							<td align="center">
-								<a href="/CalendarOnline/Month.jsp" onclick="storeValue('July')">July</a>
+								<a href="/CalendarOnline/Month.jsp?month=July">July</a>
 							</td>
-						</tr>
-						<tr>
-							<td>Mo Tu We Th Fr Sa Su</td>
 						</tr>
 					</table>
 				</td>
@@ -111,11 +83,8 @@
 					<table id="insideTable">
 						<tr>
 							<td align="center">
-								<a href="/CalendarOnline/Month.jsp" onclick="storeValue('August')">August</a>
+								<a href="/CalendarOnline/Month.jsp?month=August">August</a>
 							</td>
-						</tr>
-						<tr>
-							<td>Mo Tu We Th Fr Sa Su</td>
 						</tr>
 					</table>
 				</td>
@@ -123,11 +92,8 @@
 					<table id="insideTable">
 						<tr>
 							<td align="center">
-								<a href="/CalendarOnline/Month.jsp" onclick="storeValue('September')">September</a>
+								<a href="/CalendarOnline/Month.jsp?month=September">September</a>
 							</td>
-						</tr>
-						<tr>
-							<td>Mo Tu We Th Fr Sa Su</td>
 						</tr>
 					</table>
 				</td>
@@ -137,11 +103,8 @@
 					<table id="insideTable">
 						<tr>
 							<td align="center">
-								<a href="/CalendarOnline/Month.jsp" onclick="storeValue('October')">October</a>
+								<a href="/CalendarOnline/Month.jsp?month=October">October</a>
 							</td>
-						</tr>
-						<tr>
-							<td>Mo Tu We Th Fr Sa Su</td>
 						</tr>
 					</table>
 				</td>
@@ -149,11 +112,8 @@
 					<table id="insideTable">
 						<tr>
 							<td align="center">
-								<a href="/CalendarOnline/Month.jsp" onclick="storeValue('November')">November</a>
+								<a href="/CalendarOnline/Month.jsp?month=November">November</a>
 							</td>
-						</tr>
-						<tr>
-							<td>Mo Tu We Th Fr Sa Su</td>
 						</tr>
 					</table>
 				</td>
@@ -161,12 +121,12 @@
 					<table id="insideTable">
 						<tr>
 							<td align="center">
-								<a href="/CalendarOnline/Month.jsp" onclick="storeValue('December')">December</a>
+								<a href="/CalendarOnline/Month.jsp?month=December">December</a>
 							</td>
 						</tr>
-						<tr>
+						<!--  <tr>
 							<td>Mo Tu We Th Fr Sa Su</td>
-						</tr>
+						</tr> -->
 					</table>
 				</td>
 			</tr>
